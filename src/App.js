@@ -1,24 +1,17 @@
-import logo from './logo.svg';
+import React, {lazy, Suspense} from "react"
 import './App.css';
+import MyComp from './components/MyComp.jsx'
+const MyCompLazy = lazy(() => import('./components/MyComp.jsx'))
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h2>Open DevTolls and change to a slow Network Throttling Profile</h2>
+      <MyComp text="Regular loaded." />
+      <Suspense fallback={<MyComp text="Loading..." />}>
+        <MyCompLazy text="Lazy Loaded!!!" />
+      </Suspense>
+    </>
   );
 }
 
